@@ -360,8 +360,8 @@
       <div class="section-tag">Contact</div>
       <h2>Let's Build Something <em style="font-style:normal;color:var(--accent)">Great</em> Together</h2>
       <p>Fill out the form and we'll get back to you within 24 hours. No fluff, no spam — just a real conversation about your project.</p>
-      <div class="contact-item"><div class="contact-dot" style="background:var(--yellow)">📧</div> hello@cheatxcode.com</div>
-      <div class="contact-item"><div class="contact-dot" style="background:var(--mint)">📱</div> +91 98765 43210</div>
+      <div class="contact-item"><div class="contact-dot" style="background:var(--yellow)">📧</div> faizhayat621@gmail.com</div>
+      <div class="contact-item"><div class="contact-dot" style="background:var(--mint)">📱</div> +91 91092 00311, +91 8287372958</div>
       <div class="contact-item"><div class="contact-dot" style="background:var(--pink)">📍</div> NCR / Delhi, India (Remote Worldwide)</div>
       <div style="margin-top:28px;display:flex;gap:12px;flex-wrap:wrap">
         <a href="#" style="background:var(--fg);color:#fff;border:2px solid var(--fg);padding:10px 18px;border-radius:999px;font-weight:700;font-size:.88rem;text-decoration:none;box-shadow:var(--shadow);transition:.2s;font-family:'Outfit',sans-serif" onmouseover="this.style.transform='translate(-2px,-2px)';this.style.boxShadow='6px 6px 0 '+getComputedStyle(document.documentElement).getPropertyValue('--accent')" onmouseout="this.style.transform='';this.style.boxShadow='4px 4px 0 #1E293B'">Instagram</a>
@@ -459,20 +459,104 @@
   </div>
 </footer>
 
+<!-- EmailJS SDK -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
 <script>
+// ============================================================
+// 🔧 EmailJS CONFIGURATION — Yahan apni credentials daalo
+// ============================================================
+// 1) emailjs.com pe account banao
+// 2) Email Services → Add New Service → Gmail connect karo
+// 3) Email Templates → Create New Template
+// 4) Niche apni IDs replace karo:
+
+const EMAILJS_PUBLIC_KEY = "4gbLluHzsQF5PN40j";     // Account → API Keys → Public Key
+const EMAILJS_SERVICE_ID = "-dbNKqE7cuUB77EeEv5JD";     // Email Services page se copy karo
+const EMAILJS_TEMPLATE_ID = "template_yb3b3c3";   // Email Templates page se copy karo
+
+// EmailJS initialize
+emailjs.init(EMAILJS_PUBLIC_KEY);
+
+// ============================================================
+// 📧 Form Submit Handler
+// ============================================================
 function handleSubmit(){
-  const name=document.getElementById('f-name').value.trim();
-  const email=document.getElementById('f-email').value.trim();
-  const service=document.getElementById('f-service').value;
-  const msg=document.getElementById('f-msg').value.trim();
-  if(!name||!email||!service||!msg){
+  const name = document.getElementById('f-name').value.trim();
+  const email = document.getElementById('f-email').value.trim();
+  const phone = document.getElementById('f-phone').value.trim();
+  const service = document.getElementById('f-service').value;
+  const budget = document.getElementById('f-budget').value;
+  const msg = document.getElementById('f-msg').value.trim();
+
+  // Validation
+  if(!name || !email || !service || !msg){
     alert('Please fill in Name, Email, Service, and Project Description!');
     return;
   }
-  document.getElementById('success-msg').style.display='block';
-  document.querySelector('.submit-btn').disabled=true;
-  document.querySelector('.submit-btn').style.opacity='0.6';
+
+  // Button loading state
+  const btn = document.querySelector('.submit-btn');
+  const originalHTML = btn.innerHTML;
+  btn.disabled = true;
+  btn.innerHTML = `
+    <svg width="22" height="22" viewBox="0 0 24 24" style="animation:spin 1s linear infinite">
+      <circle cx="12" cy="12" r="10" stroke="white" stroke-width="3" fill="none" stroke-dasharray="31.4 31.4" stroke-linecap="round"/>
+    </svg>
+    Sending...
+  `;
+  btn.style.opacity = '0.7';
+
+  // Template parameters — yeh values template me {{variable}} se access hoti hain
+  const templateParams = {
+    from_name: name,
+    from_email: email,
+    phone: phone || 'Not provided',
+    service: service,
+    budget: budget || 'Not specified',
+    message: msg,
+    to_name: 'CheatXcode Team',
+  };
+
+  emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
+    .then(function(response) {
+      console.log('✅ Email sent!', response.status, response.text);
+      
+      // Show success message
+      document.getElementById('success-msg').style.display = 'block';
+      btn.innerHTML = '✅ Sent Successfully!';
+      btn.style.background = '#34D399';
+      
+      // Clear form fields
+      document.getElementById('f-name').value = '';
+      document.getElementById('f-email').value = '';
+      document.getElementById('f-phone').value = '';
+      document.getElementById('f-service').value = '';
+      document.getElementById('f-budget').value = '';
+      document.getElementById('f-msg').value = '';
+      
+      // Reset button after 4 seconds
+      setTimeout(function(){
+        btn.disabled = false;
+        btn.innerHTML = originalHTML;
+        btn.style.opacity = '1';
+        btn.style.background = '';
+        document.getElementById('success-msg').style.display = 'none';
+      }, 4000);
+    })
+    .catch(function(error) {
+      console.error('❌ Email failed:', error);
+      btn.disabled = false;
+      btn.innerHTML = originalHTML;
+      btn.style.opacity = '1';
+      alert('⚠️ Message sending failed! Please try again or email us directly at faizhayat621@gmail.com');
+    });
 }
+
+// Spinner animation
+const style = document.createElement('style');
+style.textContent = '@keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}';
+document.head.appendChild(style);
 
 // Animate cards on scroll
 const cards=document.querySelectorAll('.service-card,.stat-card,.process-step');
