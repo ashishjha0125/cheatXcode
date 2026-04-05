@@ -33,7 +33,7 @@
     }
 
     html {
-      scroll-behavior: smooth
+      /* Native smooth scrolling removed to allow Lenis momentum scrolling */
     }
 
     body {
@@ -1384,7 +1384,7 @@
       textarea.form-input {
         min-height: 85px;
       }
-      
+
       .form-label {
         margin-bottom: 6px;
         font-size: .75rem;
@@ -1441,33 +1441,50 @@
       --shadow: 4px 4px 0 #000;
       --shadow-lg: 8px 8px 0 #000;
     }
-    body.dark-theme .stat-card, body.dark-theme .service-card, body.dark-theme .contact-form, body.dark-theme .hero-visual, body.dark-theme .hero-badge {
+
+    body.dark-theme .stat-card,
+    body.dark-theme .service-card,
+    body.dark-theme .contact-form,
+    body.dark-theme .hero-visual,
+    body.dark-theme .hero-badge {
       background: var(--card);
       border-color: #000;
     }
+
     body.dark-theme .service-card {
       box-shadow: 6px 6px 0 #000;
     }
-    body.dark-theme .service-icon, body.dark-theme .why-check, body.dark-theme .step-num {
+
+    body.dark-theme .service-icon,
+    body.dark-theme .why-check,
+    body.dark-theme .step-num {
       border-color: #000;
       box-shadow: 3px 3px 0 #000;
     }
+
     body.dark-theme .stat-label {
       color: #fff;
     }
-    body.dark-theme [style*="background:#fff"], body.dark-theme [style*="background: #fff"] {
+
+    body.dark-theme [style*="background:#fff"],
+    body.dark-theme [style*="background: #fff"] {
       background: var(--card) !important;
     }
-    body.dark-theme .form-input, body.dark-theme select.form-input {
+
+    body.dark-theme .form-input,
+    body.dark-theme select.form-input {
       background: var(--card);
       color: var(--fg);
       border-color: var(--border);
     }
-    body.dark-theme .contact-dot, body.dark-theme .section-tag {
+
+    body.dark-theme .contact-dot,
+    body.dark-theme .section-tag {
       box-shadow: 2px 2px 0 #000;
       border-color: #000;
       color: #0F172A !important;
     }
+
     body.dark-theme .contact-dot i,
     body.dark-theme .step-num.n3,
     body.dark-theme .step-num.n4,
@@ -1480,29 +1497,110 @@
     body.dark-theme #contact a[href*="instagram.com"] {
       color: #0F172A !important;
     }
+
     body.dark-theme .marquee-wrap {
       background: #000;
       border-color: #000;
     }
+
     body.dark-theme .marquee-item {
       color: var(--fg);
     }
+
     body.dark-theme .submit-btn div,
     body.dark-theme .arrow-circle {
       color: #fff !important;
     }
-    body.dark-theme .logo span { border-color: transparent; }
-    
-    .theme-btn {
-      background: transparent; border: 2px solid var(--fg); color: var(--fg);
-      width: 36px; height: 36px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer; box-shadow: 2px 2px 0 var(--fg); transition: 0.2s;
-      outline: none; font-size: 1.1rem;
+
+    body.dark-theme .logo span {
+      border-color: transparent;
     }
-    .theme-btn:hover { transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--fg); background: var(--fg); color: var(--bg); }
-    body.dark-theme .theme-btn { border-color: var(--yellow); color: var(--yellow); box-shadow: 2px 2px 0 var(--yellow); }
-    body.dark-theme .theme-btn:hover { background: var(--yellow); color: #000; box-shadow: 4px 4px 0 var(--yellow); }
+
+    .theme-btn {
+      background: transparent;
+      border: 2px solid var(--fg);
+      color: var(--fg);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 2px 2px 0 var(--fg);
+      transition: 0.2s;
+      outline: none;
+      font-size: 1.1rem;
+    }
+
+    .theme-btn:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 4px 4px 0 var(--fg);
+      background: var(--fg);
+      color: var(--bg);
+    }
+
+    body.dark-theme .theme-btn {
+      border-color: var(--yellow);
+      color: var(--yellow);
+      box-shadow: 2px 2px 0 var(--yellow);
+    }
+
+    body.dark-theme .theme-btn:hover {
+      background: var(--yellow);
+      color: #000;
+      box-shadow: 4px 4px 0 var(--yellow);
+    }
+
+    .custom-calendly-btn {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--accent);
+      color: #fff;
+      border: 2px solid var(--fg);
+      padding: 12px 24px;
+      border-radius: 999px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 1.05rem;
+      box-shadow: 4px 4px 0 var(--fg);
+      cursor: pointer;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: 0.2s;
+      text-decoration: none;
+    }
+
+    .custom-calendly-btn:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0 var(--fg);
+    }
+
+    .custom-calendly-btn:active {
+      transform: translate(2px, 2px);
+      box-shadow: 2px 2px 0 var(--fg);
+    }
+
+    body.dark-theme .custom-calendly-btn {
+      border-color: var(--yellow);
+      box-shadow: 4px 4px 0 var(--yellow);
+    }
+
+    body.dark-theme .custom-calendly-btn:hover {
+      box-shadow: 6px 6px 0 var(--yellow);
+    }
+
+    @media (max-width: 768px) {
+      .custom-calendly-btn {
+        bottom: 20px;
+        right: 20px;
+        padding: 10px 20px;
+        font-size: 0.95rem;
+      }
+    }
   </style>
 </head>
 
@@ -1522,7 +1620,8 @@
         <button id="themeToggle" class="theme-btn" onclick="toggleTheme()" aria-label="Toggle Dark Mode">
           <i class="ri-moon-fill" id="themeIcon"></i>
         </button>
-        <a href="#contact" class="nav-cta" style="display:inline-flex;align-items:center;gap:6px">Get a Quote <i class="ri-arrow-right-line"></i></a>
+        <a href="#contact" class="nav-cta" style="display:inline-flex;align-items:center;gap:6px">Get a Quote <i
+            class="ri-arrow-right-line"></i></a>
         <button class="hamburger"
           onclick="this.classList.toggle('active');document.querySelector('.nav-links').classList.toggle('open')">
           <span></span><span></span><span></span>
@@ -1540,7 +1639,8 @@
         <p class="hero-sub">Web dev, app development, graphic design, social media — everything your business needs to
           dominate online.</p>
         <div class="hero-btns">
-          <a href="#contact" class="btn-primary">Start a Project <div class="arrow-circle"><i class="ri-arrow-right-line"></i></div></a>
+          <a href="#contact" class="btn-primary">Start a Project <div class="arrow-circle"><i
+                class="ri-arrow-right-line"></i></div></a>
           <a href="#services" class="btn-secondary">Our Services</a>
         </div>
       </div>
@@ -1887,7 +1987,8 @@
             Send Message
             <div
               style="width:28px;height:28px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--accent);font-weight:700;font-size:1rem;">
-              <i class="ri-send-plane-fill"></i></div>
+              <i class="ri-send-plane-fill"></i>
+            </div>
           </button>
           <div class="success-msg" id="success-msg">🎉 Got it! We'll reach out within 24 hours. Excited to work with
             you!</div>
@@ -1960,6 +2061,39 @@
       © 2026 CheatXcode. All rights reserved.
     </div>
   </footer>
+
+  <!-- Smooth Scrolling (Lenis) -->
+  <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  <script>
+    // Initialize Lenis
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      direction: 'vertical',
+      gestureDirection: 'vertical',
+      smooth: true,
+      mouseMultiplier: 1,
+      smoothTouch: false,
+      touchMultiplier: 2,
+      infinite: false,
+    });
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    // Smooth anchor link scrolling for Lenis
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = this.getAttribute('href');
+        if (target !== '#') {
+          lenis.scrollTo(target);
+        }
+      });
+    });
+  </script>
 
   <!-- EmailJS SDK -->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
@@ -2192,12 +2326,21 @@
       localStorage.setItem('theme', isDark ? 'dark' : 'light');
       themeIcon.className = isDark ? 'ri-sun-fill' : 'ri-moon-fill';
     }
-    
-    if(localStorage.getItem('theme') === 'dark') {
+
+    if (localStorage.getItem('theme') === 'dark') {
       document.body.classList.add('dark-theme');
       themeIcon.className = 'ri-sun-fill';
     }
   </script>
+
+  <!-- Custom Calendly Button Widget -->
+  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+  <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+
+  <a href="#" class="custom-calendly-btn"
+    onclick="Calendly.initPopupWidget({url: 'https://calendly.com/ashishjha97181/new-meeting'}); return false;">
+    <i class="ri-fire-fill" style="color:var(--yellow);font-size:1.2rem;"></i> Book a video call!
+  </a>
 </body>
 
 </html>
